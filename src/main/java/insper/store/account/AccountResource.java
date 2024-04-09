@@ -83,6 +83,7 @@ public class AccountResource implements AccountController {
     }
 
     @Override
+    @Operation(summary = "Read", description = "Read Account")
     public ResponseEntity<AccountOut> read(String idUser) {
 
         Account account = accountService.read(idUser);
@@ -94,11 +95,6 @@ public class AccountResource implements AccountController {
         AccountOut accountOut = AccountParser.to(account);
 
         return ResponseEntity.ok(accountOut);
-    }
-
-    @GetMapping("/accounts-test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok("Test");
     }
 
 }
