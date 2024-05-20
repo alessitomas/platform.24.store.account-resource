@@ -97,10 +97,4 @@ public class AccountResource implements AccountController {
         return ResponseEntity.ok(accountOut);
     }
 
-    @Override
-    @Operation(summary = "Fallback", description = "Fallback Account")
-    public ResponseEntity<AccountOut> fallbackGetAccounts(Throwable t) {
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
-    }
-
 }
