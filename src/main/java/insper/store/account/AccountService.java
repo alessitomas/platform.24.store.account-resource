@@ -22,7 +22,7 @@ public class AccountService {
         in.password(null);
         return accountRepository.save(new AccountModel(in)).to();
     }
-    @Cacheable(value = "accounts", key = "#id", unless = "#result == null")
+    @Cacheable(value = "accounts")
     public Account read(@NonNull String id) {
         return accountRepository.findById(id).map(AccountModel::to).orElse(null);
     }
