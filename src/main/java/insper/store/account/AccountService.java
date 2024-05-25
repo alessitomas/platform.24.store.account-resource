@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import lombok.NonNull;
@@ -21,7 +22,7 @@ public class AccountService {
         in.password(null);
         return accountRepository.save(new AccountModel(in)).to();
     }
-
+    @Cacheable(value = "accounts", key = "#id", unless = "#result == null")
     public Account read(@NonNull String id) {
         return accountRepository.findById(id).map(AccountModel::to).orElse(null);
     }

@@ -3,6 +3,8 @@ package insper.store.account;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+
 
 @RestController
 @Tag(name = "Account", description = "Account API")
@@ -82,6 +86,7 @@ public class AccountResource implements AccountController {
         return ResponseEntity.ok(AccountParser.to(account));
     }
 
+
     @Override
     @Operation(summary = "Read", description = "Read Account")
     public ResponseEntity<AccountOut> read(String idUser) {
@@ -93,14 +98,14 @@ public class AccountResource implements AccountController {
         }
 
         AccountOut accountOut = AccountParser.to(account);
-
+        
         return ResponseEntity.ok(accountOut);
     }
 
-    @Override
-    @Operation(summary = "Fallback", description = "Fallback Account")
-    public ResponseEntity<AccountOut> fallbackGetAccounts(Throwable t) {
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
-    }
+    // @Override
+    // @Operation(summary = "Fallback", description = "Fallback Account")
+    // public ResponseEntity<AccountOut> fallbackGetAccounts(Throwable t) {
+    //     return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
+    // }
 
 }
